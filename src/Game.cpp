@@ -24,7 +24,7 @@ Game::~Game() {
 }
 
 void Game::initStateMachine() {
-    currentState = &menuState;
+    currentState = &gameState;
     currentState->enter(window->getRenderer(), window->getWidth(), window->getHeight());
 }
 
@@ -59,5 +59,10 @@ void Game::update() {
 }
 
 void Game::render() {
+    SDL_SetRenderDrawColor(window->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
+    SDL_RenderClear(window->getRenderer());
 
+    currentState->render();
+
+    SDL_RenderPresent(window->getRenderer());
 }

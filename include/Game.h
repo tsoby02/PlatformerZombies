@@ -32,6 +32,8 @@ private:
     GameState& gameState = GameState::getInstance();
     ExitState& exitState = ExitState::getInstance();
 
+
+
 public:
     Game();
     ~Game();

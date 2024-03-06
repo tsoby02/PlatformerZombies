@@ -5,12 +5,16 @@
 #ifndef GAMESTATE_H
 #define GAMESTATE_H
 
-// base class
+// local includes
 #include "StateInterface.h"
+#include "ExitState.h"
+#include "Texture.h"
 
 class GameState : public StateInterface {
 private:
     GameState() = default;
+
+    Texture texture;
 
 public:
     // singleton pattern

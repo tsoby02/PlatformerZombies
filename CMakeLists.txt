@@ -20,6 +20,7 @@ set(
         INCLUDE_FILES
         include/Game.h
         include/Window.h
+        include/Texture.h
         include/StateInterface.h
         include/MenuState.h
         include/GameState.h
@@ -29,6 +30,7 @@ set(
         SRC_FILES
         src/Game.cpp
         src/Window.cpp
+        src/Texture.cpp
         src/MenuState.cpp
         src/GameState.cpp
         src/ExitState.cpp
