@@ -5,6 +5,9 @@
 #include "Game.h"
 
 Game::Game() {
+    constexpr int SCREEN_WIDTH = 1280;
+    constexpr int SCREEN_HEIGHT = 720;
+
     if(SDL_Init(SDL_INIT_VIDEO) < 0) {
         throw std::runtime_error("ERROR: Could not initialize SDL!" + std::string(SDL_GetError()));
     }
@@ -12,7 +15,7 @@ Game::Game() {
         std::cout << "WARNING: Linear texture filtering not enabled." << std::endl;
     }
 
-    window = new Window("Platformer zombie geme", 640, 480);
+    window = new Window("Platformer zombie geme", SCREEN_WIDTH, SCREEN_HEIGHT);
 
     currentState = nullptr;
     nextState = nullptr;

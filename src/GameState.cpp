@@ -12,7 +12,7 @@ GameState& GameState::getInstance() {
 void GameState::enter(SDL_Renderer* renderer, int screen_width, int screen_height) {
     StateInterface::enter(renderer, screen_width, screen_height);
 
-    texture.loadFromFile(renderer, "../assets/gizsgutya.jpeg");
+    texture.loadFromFile(renderer, "../assets/test2.png");
 }
 
 void GameState::exit() {
