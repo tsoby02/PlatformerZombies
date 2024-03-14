@@ -4,8 +4,8 @@
 
 #include "Window.h"
 
-Window::Window(const char* title, int width, int height) : window_title(title), window_width(width), window_height(height) {
-    window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN);
+Window::Window(const char* title, int width, int height) : title(title), width(width), height(height) {
+    window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN);
     if(window == nullptr) {
         throw std::runtime_error("ERROR: Window could not be created! " + std::string(SDL_GetError()));
     }
@@ -26,10 +26,10 @@ Window::~Window() {
     window = nullptr;
 }
 
-void Window::resize(int new_width, int new_height) {
-    SDL_SetWindowSize(window, new_width, new_height);
-    window_width = new_width;
-    window_height = new_height;
+void Window::resize(int width, int height) {
+    this->width = width;
+    this->height = height;
+    SDL_SetWindowSize(window, width, height);
 }
 
 void Window::handleEvents(const SDL_Event& event) {

@@ -5,6 +5,9 @@
 #ifndef GAMESTATE_H
 #define GAMESTATE_H
 
+// SDL
+#include <SDL.h>
+
 // local includes
 #include "StateInterface.h"
 #include "ExitState.h"
@@ -14,7 +17,15 @@ class GameState : public StateInterface {
 private:
     GameState() = default;
 
-    Texture texture;
+    int SCREEN_WIDTH;
+    int SCREEN_HEIGHT;
+
+    float scaleX, scaleY;
+
+    Texture background1;
+    Texture background2;
+    Texture background3;
+    Texture background4;
 
 public:
     // singleton pattern
@@ -22,7 +33,7 @@ public:
     GameState& operator= (const GameState&) = delete;
     static GameState& getInstance();
 
-    void enter(SDL_Renderer* renderer, int screen_width, int screen_height) override;
+    void enter(SDL_Renderer* renderer, int window_width, int window_height) override;
     void exit() override;
 
     StateInterface* handleEvents(const SDL_Event& event) override;

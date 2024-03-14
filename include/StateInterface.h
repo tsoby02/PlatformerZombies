@@ -9,14 +9,14 @@
 
 class StateInterface {
 protected:
-    int SCREEN_WIDTH;
-    int SCREEN_HEIGHT;
+    int WINDOW_WIDTH;
+    int WINDOW_HEIGHT;
     SDL_Renderer* renderer;
 
 public:
-    virtual void enter(SDL_Renderer* renderer, int screen_width, int screen_height) {
-        SCREEN_WIDTH = screen_width;
-        SCREEN_HEIGHT = screen_height;
+    virtual void enter(SDL_Renderer* renderer, int window_width, int window_height) {
+        WINDOW_WIDTH = window_width;
+        WINDOW_HEIGHT = window_height;
         this->renderer = renderer;
     }
     virtual void exit() = 0;

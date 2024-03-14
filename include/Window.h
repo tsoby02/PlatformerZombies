@@ -14,9 +14,9 @@
 
 class Window {
 private:
-    int window_width;
-    int window_height;
-    const char* window_title;
+    const char* title;
+    int width;
+    int height;
 
     Uint32 windowID;
     bool fullscreen;
@@ -30,10 +30,10 @@ public:
     ~Window();
 
     [[nodiscard]] SDL_Renderer* getRenderer() const { return renderer; }
-    [[nodiscard]] int getWidth() const { return window_width; }
-    [[nodiscard]] int getHeight() const { return window_height; }
+    [[nodiscard]] int getWidth() const { return width; }
+    [[nodiscard]] int getHeight() const { return height; }
 
-    void resize(int new_width, int new_height);
+    void resize(int width, int height);
     void handleEvents(const SDL_Event& event);
 };
 

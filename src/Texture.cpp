@@ -62,7 +62,6 @@ void Texture::free() {
     }
 }
 
-
 void Texture::render(SDL_Renderer* renderer, int x, int y, SDL_Rect* srcRect, double angle, SDL_Point* center) {
     SDL_Rect renderRect = {x, y, this->w, this->h};
     if(srcRect != nullptr) {
@@ -73,8 +72,8 @@ void Texture::render(SDL_Renderer* renderer, int x, int y, SDL_Rect* srcRect, do
     SDL_RenderCopyEx(renderer, this->texture, srcRect, &renderRect, angle, center, SDL_FLIP_NONE);
 }
 
-void Texture::createBlankTexture(SDL_Renderer* renderer, SDL_TextureAccess access, int width, int height) {
-    texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, access, width, height);
+void Texture::createBlankTexture(SDL_Renderer* renderer, int width, int height) {
+    texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, width, height);
     if(texture == nullptr){
         throw std::runtime_error("Unable to create blank texture!" + std::string(SDL_GetError()));
     }
@@ -83,7 +82,21 @@ void Texture::createBlankTexture(SDL_Renderer* renderer, SDL_TextureAccess acces
 }
 
 void Texture::setAsTarget(SDL_Renderer* renderer) {
-    SDL_SetRenderTarget(renderer, texture);
+    SDL_RendererInfo info;
+    SDL_GetRendererInfo(renderer, &info);
+    if(!(info.flags & SDL_RENDERER_TARGETTEXTURE)) {
+        throw std::runtime_error("ERROR: Render targets are not supported!");
+    }
+
+    int access;
+    SDL_QueryTexture(texture, nullptr, &access, nullptr, nullptr);
+
+    if(access != SDL_TEXTUREACCESS_TARGET) {
+        std::cout << "WARNING: Texture can not be set as target!" << std::endl;
+    }
+    else {
+        SDL_SetRenderTarget(renderer, texture);
+    }
 }
 
 void Texture::setWindowAsTarget(SDL_Renderer* renderer) {

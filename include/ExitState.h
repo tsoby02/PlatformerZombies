@@ -18,7 +18,7 @@ public:
     ExitState& operator= (const ExitState&) = delete;
     static ExitState& getInstance();
 
-    void enter(SDL_Renderer* renderer, int screen_width, int screen_height) override;
+    void enter(SDL_Renderer* renderer, int window_width, int window_height) override;
     void exit() override;
 
     StateInterface* handleEvents(const SDL_Event& event) override;

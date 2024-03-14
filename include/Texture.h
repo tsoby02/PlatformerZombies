@@ -29,10 +29,10 @@ public:
     void loadFromText(SDL_Renderer* renderer, const std::string& text, TTF_Font* font, SDL_Color textColor);
     void free();
 
-    //x, y are coordinates to render ; srcRect is the rect from the texture to be rendered
+    //x, y are coordinates to render to ; srcRect is the rect from the texture to be rendered
     void render(SDL_Renderer* renderer, int x, int y, SDL_Rect* srcRect = nullptr, double angle = 0.0, SDL_Point* center = nullptr);
 
-    void createBlankTexture(SDL_Renderer* renderer, SDL_TextureAccess access, int width, int height);
+    void createBlankTexture(SDL_Renderer* renderer, int width, int height);
     void setAsTarget(SDL_Renderer* renderer);
     static void setWindowAsTarget(SDL_Renderer* renderer);
 };

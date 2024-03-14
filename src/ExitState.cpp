@@ -9,8 +9,8 @@ ExitState& ExitState::getInstance() {
     return instance;
 }
 
-void ExitState::enter(SDL_Renderer* renderer, int screen_width, int screen_height) {
-    StateInterface::enter(renderer, screen_width, screen_height);
+void ExitState::enter(SDL_Renderer* renderer, int window_width, int window_height) {
+    StateInterface::enter(renderer, window_width, window_height);
 }
 
 void ExitState::exit() {

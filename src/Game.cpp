@@ -5,13 +5,13 @@
 #include "Game.h"
 
 Game::Game() {
-    constexpr int SCREEN_WIDTH = 1280;
-    constexpr int SCREEN_HEIGHT = 720;
+    constexpr int SCREEN_WIDTH = 1920;
+    constexpr int SCREEN_HEIGHT = 1080;
 
     if(SDL_Init(SDL_INIT_VIDEO) < 0) {
         throw std::runtime_error("ERROR: Could not initialize SDL!" + std::string(SDL_GetError()));
     }
-    if(!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1")) {
+    if(!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0")) {
         std::cout << "WARNING: Linear texture filtering not enabled." << std::endl;
     }
 
@@ -62,7 +62,7 @@ void Game::update() {
 }
 
 void Game::render() {
-    SDL_SetRenderDrawColor(window->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
+    SDL_SetRenderDrawColor(window->getRenderer(), 0x00, 0x00, 0x00, 0xFF);
     SDL_RenderClear(window->getRenderer());
 
     currentState->render();
